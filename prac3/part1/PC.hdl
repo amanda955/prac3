@@ -16,6 +16,8 @@ CHIP PC {
     OUT out[16];
 
     PARTS:
+    Register(in=regIn, load=regLoad, out=out);
+
     Inc16(in=out, out=incOut); 
 
     Mux16(a=out, b=incOut, sel=inc, out=incMuxOut);  
@@ -27,8 +29,9 @@ CHIP PC {
     Or(a=load, b=inc, out=Or1);
     Or(a=Or1, b=reset, out=regLoad); 
 
-    Register(in=regIn, load=regLoad, out=out);
+    
 }
+
 
 
 
