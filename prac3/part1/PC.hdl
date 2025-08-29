@@ -23,7 +23,11 @@ CHIP PC {
     Mux16(a=incMuxOut, b=in, sel=load, out=loadMuxOut);  
     Mux16(a=loadMuxOut, b=Zero16(), sel=reset, out=regIn); 
 
-    Register(in=regIn, load=(load | inc | reset), out=out);
+    Or(a=load, b=inc, out=loadOr);
+    Or(a=loadOr, b=reset, out=regLoad); 
+
+    Register(in=regIn, load=regLoad, out=out);
 }
+
 
 
